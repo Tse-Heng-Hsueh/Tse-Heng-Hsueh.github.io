@@ -2,8 +2,26 @@ import React from "react";
 import { words } from "../constants";
 import Button from "../components/Button";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import AnimatedCounter from "../components/AnimatedCounter";
 
 const Hero = () => {
+  // GSAP animation for the hero section
+  useGSAP(() => {
+    gsap.fromTo(
+      ".hero-text h1",
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        stagger: 0.2,
+      }
+    );
+  });
+
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
@@ -38,7 +56,7 @@ const Hero = () => {
               <h1>that Deliver Real Impact</h1>
             </div>
             <p className="ttext-white-50 md:text-xl relative z-10">
-              Hi, I'm Tyler, A data enthusiast crafting GenAI tools and scalable
+              Hi, I'm Tyler. A data enthusiast crafting GenAI tools and scalable
               data systems.
             </p>
             <Button
@@ -55,7 +73,7 @@ const Hero = () => {
           </div>
         </figure>
       </div>
-      <div className="hero-counter">{/*  */}</div>
+      <AnimatedCounter />
     </section>
   );
 };
